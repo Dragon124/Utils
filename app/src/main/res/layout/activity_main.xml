@@ -3,13 +3,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
+    <ImageView
+        android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Hello Word!"
-        android:textSize="18sp" />
+        android:visibility="gone" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="click"
+        android:padding="5dp"
+        android:text="截图" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2000dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50sp"
+                android:text="546\n54\n687\nas\ndsd"/>
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>
