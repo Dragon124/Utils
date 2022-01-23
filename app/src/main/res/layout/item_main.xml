@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/color_transparency"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="11"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp" />
+</LinearLayout>

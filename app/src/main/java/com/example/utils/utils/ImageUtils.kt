@@ -1,5 +1,6 @@
 package com.example.utils.utils
 
+import android.content.res.Resources
 import android.graphics.*
 import android.view.View
 
@@ -30,6 +31,22 @@ class ImageUtils {
                 WaterMarkUtils.onDrawWatermark(view.context, canvas, watermarkText, watermarkStartY, radian, watermarkColor)
             }
             return bitmap
+        }
+
+        /**
+         * 获取本地资源图片，缩放到100像素
+         * @param res Resources
+         * @param id Int
+         * @return Bitmap
+         */
+        fun getResBitmap(res : Resources, id : Int) : Bitmap {
+            var options = BitmapFactory.Options()
+            options.inJustDecodeBounds = true
+            BitmapFactory.decodeResource(res, id, options)
+            options.inJustDecodeBounds = false
+            options.inDensity = options.outWidth
+            options.inTargetDensity = 200
+            return BitmapFactory.decodeResource(res, id, options)
         }
     }
 }

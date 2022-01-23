@@ -3,7 +3,9 @@ package com.example.utils.utils
 import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
+import android.content.Intent
 import android.os.Bundle
+import java.util.*
 
 class AppManager {
     companion object {
@@ -31,6 +33,10 @@ class AppManager {
                 override fun onActivityDestroyed(activity : Activity) {
                 }
             })
+        }
+
+        fun jump(act : Activity, aty : Class<out Activity?>?) {
+            act.startActivity(Intent(act, aty))
         }
     }
 }
