@@ -9,7 +9,7 @@ import com.example.utils.R
 import kotlinx.android.synthetic.main.item_main.view.*
 
 class MainAdapter(var context : Context, var iChildItemClick : IChildItemClick) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
-    var datas = mutableListOf<String>()
+    var datas = mutableListOf<Map<String, Any>>()
 
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view)
 
@@ -17,7 +17,7 @@ class MainAdapter(var context : Context, var iChildItemClick : IChildItemClick) 
         ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_main, null))
 
     override fun onBindViewHolder(holder : ViewHolder, position : Int) {
-        holder.itemView.tv_name.text = datas.getOrNull(position) ?: ""
+        holder.itemView.tv_name.text = datas.getOrNull(position)?.get("name")?.toString() ?: ""
         holder.itemView.tv_name.setOnClickListener {
             iChildItemClick.click(position)
         }

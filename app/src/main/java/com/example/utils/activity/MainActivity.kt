@@ -1,5 +1,6 @@
 package com.example.utils.activity
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +11,17 @@ import com.example.utils.learn.xfermode.XfermodeActivity
 import com.example.utils.utils.AppManager
 
 class MainActivity : AppCompatActivity() {
+    private val adapter : MainAdapter by lazy {
+        MainAdapter(this, object : MainAdapter.IChildItemClick {
+            override fun click(position : Int) {
+                var mClass = adapter.datas.getOrNull(position)?.get("class")
+                if (mClass != null) {
+                    mClass as Class<out Activity?>?
+                    AppManager.jump(this@MainActivity, mClass)
+                }
+            }
+        })
+    }
 
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,23 +33,16 @@ class MainActivity : AppCompatActivity() {
 //        var view = findViewById<View>(R.id.ll)
 //        FileUtils.saveBitmap(this, ImageUtils.getViewBitmap(view, watermarkText = "水印", watermarkColor = ContextCompat.getColor(this, R.color.color_transparency)))
 //    }
+
+
     private fun initRecyclerView(recyclerView : RecyclerView) {
-        var adapter = MainAdapter(this, object : MainAdapter.IChildItemClick {
-            override fun click(position : Int) {
-                when (position) {
-                    0 -> {
-                        AppManager.jump(this@MainActivity, XfermodeActivity::class.java)
-                    }
-                }
-            }
-        })
         adapter.datas = getLearns()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
         recyclerView.setOnClickListener { }
     }
 
-    private fun getLearns() : MutableList<String> {
-        return mutableListOf("Xfermode")
+    private fun getLearns() : MutableList<Map<String, Any>> {
+        return mutableListOf(mapOf("name" to "Xfermode", "class" to XfermodeActivity::class.java))
     }
 }
